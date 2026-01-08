@@ -6,7 +6,7 @@ import React, { useState, useEffect, useRef } from 'react';
 // ============================================
 
 const Portfolio = () => {
-  const [mode, setMode] = useState('cyber'); // 'pro' or 'cyber'
+  const [mode, setMode] = useState('pro'); // 'pro' or 'cyber'
   const [lang, setLang] = useState('en'); // 'en' or 'es'
   const [loading, setLoading] = useState(true);
   const [loadingProgress, setLoadingProgress] = useState(0);
