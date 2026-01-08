@@ -27,7 +27,7 @@ const Portfolio = () => {
   const translations = {
     en: {
       loading: ['INITIALIZING SYSTEM...', 'LOADING NEURAL INTERFACE...', 'CONNECTING TO NIGHT CITY...', 'DECRYPTING DATA...', 'WELCOME, NETRUNNER'],
-      nav: { about: 'About', skills: 'Skills', projects: 'Projects', experience: 'Experience', contact: 'Contact', cv: 'Resume' },
+      nav: { about: 'About', skills: 'Skills', projects: 'Projects', experience: 'Experience', contact: 'Contact', /*cv: 'Resume'*/ },
       hero: {
         greeting: "Hello, I'm",
         name: 'Esteban Meza',
@@ -87,9 +87,9 @@ const Portfolio = () => {
         email: 'Email',
         social: 'Social'
       },
-      cv: {
-        download: 'Download Resume'
-      },
+      /*cv: {
+        //download: 'Download Resume'
+      },*/
       footer: {
         designed: 'Designed & Built by',
         rights: 'All rights reserved.'
@@ -1360,7 +1360,7 @@ const Portfolio = () => {
           { icon: '💼', label: 'LinkedIn', url: 'https://www.linkedin.com/in/esteban-meza-87731a22b/' },
           ...(mode === 'cyber' ? [
             { icon: '🎮', label: 'Steam', url: 'https://steamcommunity.com/id/emezag19/' },
-            { icon: '🎧', label: 'Discord', url: '#', extra: '350102594980675584' }
+            //{ icon: '🎧', label: 'Discord', url: '#', extra: '350102594980675584' }
           ] : [])
         ].map((social, i) => (
           <a
