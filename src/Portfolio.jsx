@@ -27,7 +27,7 @@ const Portfolio = () => {
   const translations = {
     en: {
       loading: ['INITIALIZING SYSTEM...', 'LOADING NEURAL INTERFACE...', 'CONNECTING TO NIGHT CITY...', 'DECRYPTING DATA...', 'WELCOME, NETRUNNER'],
-      nav: { about: 'About', skills: 'Skills', projects: 'Projects', experience: 'Experience', contact: 'Contact', /*cv: 'Resume'*/ },
+      nav: { about: 'About', skills: 'Skills', projects: 'Projects', experience: 'Experience', contact: 'Contact' },
       hero: {
         greeting: "Hello, I'm",
         name: 'Esteban Meza',
@@ -75,7 +75,7 @@ const Portfolio = () => {
           {
             role: 'Software Developer',
             company: 'Prequind S.A.',
-            period: '2023 - Present',
+            period: '2020 - 2021 ',
             duration: '1.5 years',
             description: 'Developing and maintaining backend systems, implementing business logic, and collaborating on full-stack solutions.'
           }
@@ -87,9 +87,6 @@ const Portfolio = () => {
         email: 'Email',
         social: 'Social'
       },
-      /*cv: {
-        //download: 'Download Resume'
-      },*/
       footer: {
         designed: 'Designed & Built by',
         rights: 'All rights reserved.'
@@ -103,7 +100,7 @@ const Portfolio = () => {
     },
     es: {
       loading: ['INICIALIZANDO SISTEMA...', 'CARGANDO INTERFAZ NEURAL...', 'CONECTANDO A NIGHT CITY...', 'DESENCRIPTANDO DATOS...', 'BIENVENIDO, NETRUNNER'],
-      nav: { about: 'Sobre Mí', skills: 'Habilidades', projects: 'Proyectos', experience: 'Experiencia', contact: 'Contacto', cv: 'CV' },
+      nav: { about: 'Sobre Mí', skills: 'Habilidades', projects: 'Proyectos', experience: 'Experiencia', contact: 'Contacto' },
       hero: {
         greeting: "Hola, soy",
         name: 'Esteban Meza',
@@ -151,7 +148,7 @@ const Portfolio = () => {
           {
             role: 'Desarrollador de Software',
             company: 'Prequind S.A.',
-            period: '2020 - 2021 ',
+            period: '2023 - Presente',
             duration: '1.5 años',
             description: 'Desarrollo y mantenimiento de sistemas backend, implementación de lógica de negocio y colaboración en soluciones full-stack.'
           }
@@ -162,9 +159,6 @@ const Portfolio = () => {
         subtitle: "¿Tienes un proyecto en mente? Construyamos algo increíble juntos.",
         email: 'Correo',
         social: 'Social'
-      },
-      cv: {
-        download: 'Descargar CV'
       },
       footer: {
         designed: 'Diseñado y Construido por',
@@ -449,7 +443,6 @@ const Portfolio = () => {
       zIndex: 10000,
       fontFamily: "'Orbitron', monospace"
     }}>
-      {/* Scanlines */}
       <div style={{
         position: 'absolute',
         top: 0,
@@ -460,7 +453,6 @@ const Portfolio = () => {
         pointerEvents: 'none'
       }} />
       
-      {/* Glitch title */}
       <div style={{
         fontSize: '48px',
         fontWeight: 'bold',
@@ -473,7 +465,6 @@ const Portfolio = () => {
         ESTEBAN_MEZA.exe
       </div>
 
-      {/* Loading text */}
       <div style={{
         fontSize: '14px',
         color: '#00f0ff',
@@ -484,7 +475,6 @@ const Portfolio = () => {
         {loadingText}
       </div>
 
-      {/* Progress bar */}
       <div style={{
         width: '300px',
         height: '4px',
@@ -502,7 +492,6 @@ const Portfolio = () => {
         }} />
       </div>
 
-      {/* Progress percentage */}
       <div style={{
         marginTop: '10px',
         fontSize: '12px',
@@ -580,7 +569,6 @@ const Portfolio = () => {
       zIndex: 1000,
       boxSizing: 'border-box'
     }}>
-      {/* Logo */}
       <div style={{
         fontSize: '24px',
         fontWeight: 'bold',
@@ -592,7 +580,6 @@ const Portfolio = () => {
         {mode === 'cyber' ? '<EM/>' : 'EM'}
       </div>
 
-      {/* Nav Links */}
       <div style={{ display: 'flex', gap: '30px', alignItems: 'center' }}>
         {Object.entries(t.nav).map(([key, value]) => (
           <a
@@ -620,9 +607,7 @@ const Portfolio = () => {
         ))}
       </div>
 
-      {/* Controls */}
       <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
-        {/* Language Toggle */}
         <button
           onClick={() => setLang(lang === 'en' ? 'es' : 'en')}
           style={{
@@ -640,7 +625,6 @@ const Portfolio = () => {
           {lang === 'en' ? '🇪🇸 ES' : '🇺🇸 EN'}
         </button>
 
-        {/* Mode Toggle */}
         <button
           onClick={() => setMode(mode === 'pro' ? 'cyber' : 'pro')}
           style={{
@@ -659,7 +643,6 @@ const Portfolio = () => {
           {mode === 'cyber' ? '💼 PRO' : '🌃 CYBER'}
         </button>
 
-        {/* Music Toggle (cyber mode only) */}
         {mode === 'cyber' && (
           <button
             onClick={() => setMusicPlaying(!musicPlaying)}
@@ -693,7 +676,6 @@ const Portfolio = () => {
       position: 'relative',
       textAlign: 'center'
     }}>
-      {/* Background effect */}
       {mode === 'cyber' && (
         <div style={{
           position: 'absolute',
@@ -746,7 +728,6 @@ const Portfolio = () => {
         }}>|</span>
       </div>
 
-      {/* Quote - clickable */}
       <div
         onClick={() => setQuoteIndex((quoteIndex + 1) % t.quotes.length)}
         style={{
@@ -797,7 +778,6 @@ const Portfolio = () => {
         {t.hero.cta}
       </a>
 
-      {/* Scroll indicator */}
       <div style={{
         position: 'absolute',
         bottom: '40px',
@@ -873,7 +853,6 @@ const Portfolio = () => {
             {t.about.description2}
           </p>
 
-          {/* Quick stats */}
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',
@@ -1049,7 +1028,6 @@ const Portfolio = () => {
               e.currentTarget.style.borderColor = theme.border;
             }}
           >
-            {/* Project header */}
             <div style={{
               padding: '30px',
               borderBottom: `1px solid ${theme.border}`
@@ -1082,7 +1060,6 @@ const Portfolio = () => {
               </p>
             </div>
 
-            {/* Tech stack */}
             <div style={{
               padding: '20px 30px',
               display: 'flex',
@@ -1107,7 +1084,6 @@ const Portfolio = () => {
               ))}
             </div>
 
-            {/* Links */}
             <div style={{
               padding: '20px 30px',
               display: 'flex',
@@ -1180,7 +1156,6 @@ const Portfolio = () => {
       </h2>
 
       <div style={{ position: 'relative' }}>
-        {/* Timeline line */}
         <div style={{
           position: 'absolute',
           left: '20px',
@@ -1200,7 +1175,6 @@ const Portfolio = () => {
               marginBottom: '40px'
             }}
           >
-            {/* Timeline dot */}
             <div style={{
               width: '42px',
               height: '42px',
@@ -1217,7 +1191,6 @@ const Portfolio = () => {
               <span style={{ fontSize: '18px' }}>💼</span>
             </div>
 
-            {/* Content */}
             <div style={{
               background: theme.bgSecondary,
               padding: '30px',
@@ -1313,7 +1286,6 @@ const Portfolio = () => {
         {t.contact.subtitle}
       </p>
 
-      {/* Email */}
       <a
         href="mailto:estebanmeza.cs@outlook.com"
         style={{
@@ -1348,7 +1320,6 @@ const Portfolio = () => {
         📧 estebanmeza.cs@outlook.com
       </a>
 
-      {/* Social Links */}
       <div style={{
         display: 'flex',
         justifyContent: 'center',
@@ -1359,8 +1330,7 @@ const Portfolio = () => {
           { icon: '💻', label: 'GitHub', url: 'https://github.com/EstebanMezaCS' },
           { icon: '💼', label: 'LinkedIn', url: 'https://www.linkedin.com/in/esteban-meza-87731a22b/' },
           ...(mode === 'cyber' ? [
-            { icon: '🎮', label: 'Steam', url: 'https://steamcommunity.com/id/emezag19/' },
-            //{ icon: '🎧', label: 'Discord', url: '#', extra: '350102594980675584' }
+            { icon: '🎮', label: 'Steam', url: 'https://steamcommunity.com/id/emezag19/' }
           ] : [])
         ].map((social, i) => (
           <a
@@ -1368,7 +1338,6 @@ const Portfolio = () => {
             href={social.url}
             target="_blank"
             rel="noopener noreferrer"
-            title={social.extra || social.label}
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -1400,44 +1369,6 @@ const Portfolio = () => {
           </a>
         ))}
       </div>
-    </section>
-  );
-
-  // CV Section
-  const CVSection = () => (
-    <section id="cv" style={{
-      padding: '60px 40px',
-      textAlign: 'center'
-    }}>
-      <a
-        href="/cv-esteban-meza.pdf"
-        download
-        style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '10px',
-          background: theme.bgSecondary,
-          border: `2px solid ${theme.accent}`,
-          color: theme.accent,
-          padding: '16px 40px',
-          borderRadius: '8px',
-          fontSize: '16px',
-          fontWeight: 'bold',
-          textDecoration: 'none',
-          transition: 'all 0.3s ease',
-          fontFamily: mode === 'cyber' ? "'Orbitron', monospace" : "'Space Grotesk', sans-serif"
-        }}
-        onMouseEnter={(e) => {
-          e.target.style.background = theme.accent;
-          e.target.style.color = '#000';
-        }}
-        onMouseLeave={(e) => {
-          e.target.style.background = theme.bgSecondary;
-          e.target.style.color = theme.accent;
-        }}
-      >
-        📄 {t.cv.download}
-      </a>
     </section>
   );
 
@@ -1487,10 +1418,8 @@ const Portfolio = () => {
       cursor: mode === 'cyber' ? 'none' : 'default',
       overflowX: 'hidden'
     }}>
-      {/* Google Fonts */}
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-      {/* Animations */}
       <style>{`
         @keyframes glitch {
           0%, 90%, 100% { transform: translate(0); }
@@ -1561,7 +1490,6 @@ const Portfolio = () => {
             <ProjectsSection />
             <ExperienceSection />
             <ContactSection />
-            <CVSection />
           </main>
           <Footer />
         </>
