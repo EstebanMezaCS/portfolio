@@ -151,7 +151,7 @@ const Portfolio = () => {
           {
             role: 'Desarrollador de Software',
             company: 'Prequind S.A.',
-            period: '2023 - Presente',
+            period: '2020 - 2021 ',
             duration: '1.5 años',
             description: 'Desarrollo y mantenimiento de sistemas backend, implementación de lógica de negocio y colaboración en soluciones full-stack.'
           }
