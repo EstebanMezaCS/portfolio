@@ -687,7 +687,7 @@ const Portfolio = () => {
                   marginTop: '40px', paddingTop: '30px', borderTop: `1px solid ${theme.border}`
                 }}>
                   {[
-                    { value: '2.5+', label: lang === 'en' ? 'Years Experience' : 'Años Experiencia' },
+                    { value: '1.5+', label: lang === 'en' ? 'Years Experience' : 'Años Experiencia' },
                     { value: '2', label: lang === 'en' ? 'Projects' : 'Proyectos' },
                     { value: '2028', label: lang === 'en' ? 'Graduation' : 'Graduación' }
                   ].map((stat, i) => (
