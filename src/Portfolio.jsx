@@ -85,7 +85,7 @@ const Portfolio = () => {
       },
       about: {
         title: 'Sobre Mí',
-        description: "Soy un Desarrollador Backend y entusiasta de Blockchain con más de 2.5 años de experiencia construyendo sistemas robustos y aplicaciones descentralizadas. Actualmente cursando mi licenciatura en Ciencias de la Computación (graduación 2028), me especializo en crear arquitecturas backend escalables y contratos inteligentes.",
+        description: "Soy un Desarrollador Backend y entusiasta de Blockchain con más de 1.5 años de experiencia construyendo sistemas robustos y aplicaciones descentralizadas. Actualmente cursando mi licenciatura en Ciencias de la Computación (graduación 2028), me especializo en crear arquitecturas backend escalables y contratos inteligentes.",
         description2: "Me apasiona la intersección entre el desarrollo backend tradicional y las tecnologías blockchain emergentes, siempre buscando nuevos desafíos que expandan los límites de lo posible."
       },
       skills: {
