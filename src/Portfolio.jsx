@@ -6,7 +6,7 @@ import React, { useState, useEffect, useRef } from 'react';
 // ============================================
 
 const Portfolio = () => {
-  const [mode, setMode] = useState('pro'); // 'pro' or 'cyber'
+  const [mode, setMode] = useState('pro'); // 'pro' or 'cyber' - starts in professional
   const [lang, setLang] = useState('en'); // 'en' or 'es'
   const [loading, setLoading] = useState(true);
   const [loadingProgress, setLoadingProgress] = useState(0);
@@ -17,9 +17,16 @@ const Portfolio = () => {
   const [quoteIndex, setQuoteIndex] = useState(0);
   const [typedText, setTypedText] = useState('');
   const [cursorVisible, setCursorVisible] = useState(true);
-  const audioRef = useRef(null);
 
   const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+
+  // Kratos quotes - ALWAYS in English (original language)
+  const kratosQuotes = [
+    '"Do not be sorry. Be better." - Kratos',
+    '"The cycle ends here." - Kratos',
+    '"We must be better than this." - Kratos',
+    '"Keep your expectations low and you will never be disappointed." - Kratos'
+  ];
 
   // ============================================
   // TRANSLATIONS
@@ -27,7 +34,7 @@ const Portfolio = () => {
   const translations = {
     en: {
       loading: ['INITIALIZING SYSTEM...', 'LOADING NEURAL INTERFACE...', 'CONNECTING TO NIGHT CITY...', 'DECRYPTING DATA...', 'WELCOME, NETRUNNER'],
-      nav: { about: 'About', skills: 'Skills', projects: 'Projects', experience: 'Experience', contact: 'Contact' },
+      nav: { about: 'About', skills: 'Skills', projects: 'Projects', contact: 'Contact', cv: 'Resume' },
       hero: {
         greeting: "Hello, I'm",
         name: 'Esteban Meza',
@@ -69,17 +76,13 @@ const Portfolio = () => {
           }
         ]
       },
-      experience: {
-        title: 'Experience',
+      certifications: {
+        title: 'Certifications & Courses',
         items: [
-          {
-            role: 'Software Developer',
-            company: 'Prequind S.A.',
-            period: '2020 - 2021 ',
-            duration: '1.5 years',
-            description: 'Developing and maintaining backend systems, implementing business logic, and collaborating on full-stack solutions.'
-          }
-        ]
+          // Add your certifications here when ready
+          // { name: 'Course Name', issuer: 'Platform', date: '2024', url: 'link' }
+        ],
+        comingSoon: 'More certifications coming soon...'
       },
       contact: {
         title: 'Get In Touch',
@@ -87,20 +90,17 @@ const Portfolio = () => {
         email: 'Email',
         social: 'Social'
       },
+      cv: {
+        download: 'Download Resume'
+      },
       footer: {
         designed: 'Designed & Built by',
         rights: 'All rights reserved.'
-      },
-      quotes: [
-        '"Do not be sorry. Be better." - Kratos',
-        '"The cycle ends here." - Kratos',
-        '"We must be better than this." - Kratos',
-        '"Keep your expectations low and you will never be disappointed." - Kratos'
-      ]
+      }
     },
     es: {
       loading: ['INICIALIZANDO SISTEMA...', 'CARGANDO INTERFAZ NEURAL...', 'CONECTANDO A NIGHT CITY...', 'DESENCRIPTANDO DATOS...', 'BIENVENIDO, NETRUNNER'],
-      nav: { about: 'Sobre Mí', skills: 'Habilidades', projects: 'Proyectos', experience: 'Experiencia', contact: 'Contacto' },
+      nav: { about: 'Sobre Mí', skills: 'Habilidades', projects: 'Proyectos', contact: 'Contacto', cv: 'CV' },
       hero: {
         greeting: "Hola, soy",
         name: 'Esteban Meza',
@@ -142,17 +142,10 @@ const Portfolio = () => {
           }
         ]
       },
-      experience: {
-        title: 'Experiencia',
-        items: [
-          {
-            role: 'Desarrollador de Software',
-            company: 'Prequind S.A.',
-            period: '2023 - Presente',
-            duration: '1.5 años',
-            description: 'Desarrollo y mantenimiento de sistemas backend, implementación de lógica de negocio y colaboración en soluciones full-stack.'
-          }
-        ]
+      certifications: {
+        title: 'Certificaciones y Cursos',
+        items: [],
+        comingSoon: 'Más certificaciones próximamente...'
       },
       contact: {
         title: 'Contáctame',
@@ -160,16 +153,13 @@ const Portfolio = () => {
         email: 'Correo',
         social: 'Social'
       },
+      cv: {
+        download: 'Descargar CV'
+      },
       footer: {
         designed: 'Diseñado y Construido por',
         rights: 'Todos los derechos reservados.'
-      },
-      quotes: [
-        '"No lo sientas. Sé mejor." - Kratos',
-        '"El ciclo termina aquí." - Kratos',
-        '"Debemos ser mejores que esto." - Kratos',
-        '"Mantén tus expectativas bajas y nunca te decepcionarás." - Kratos'
-      ]
+      }
     }
   };
 
@@ -319,8 +309,7 @@ const Portfolio = () => {
       textSecondary: '#94a3b8',
       textMuted: '#64748b',
       border: 'rgba(255,255,255,0.1)',
-      gradient: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
-      cursor: 'default'
+      gradient: 'linear-gradient(135deg, #3b82f6, #1d4ed8)'
     },
     cyber: {
       bg: '#0a0a0f',
@@ -334,12 +323,22 @@ const Portfolio = () => {
       textSecondary: '#00f0ff',
       textMuted: '#666680',
       border: 'rgba(0, 240, 255, 0.2)',
-      gradient: 'linear-gradient(135deg, #00f0ff, #ff00ff)',
-      cursor: 'none'
+      gradient: 'linear-gradient(135deg, #00f0ff, #ff00ff)'
     }
   };
 
   const theme = themes[mode];
+
+  // ============================================
+  // HANDLER FUNCTIONS - Fixed for immediate response
+  // ============================================
+  const handleModeToggle = () => {
+    setMode(prevMode => prevMode === 'pro' ? 'cyber' : 'pro');
+  };
+
+  const handleLangToggle = () => {
+    setLang(prevLang => prevLang === 'en' ? 'es' : 'en');
+  };
 
   // ============================================
   // COMPONENTS
@@ -376,54 +375,6 @@ const Portfolio = () => {
           />
         ))}
       </div>
-    );
-  };
-
-  // Custom cursor for cyber mode
-  const CustomCursor = () => {
-    const [position, setPosition] = useState({ x: 0, y: 0 });
-    
-    useEffect(() => {
-      if (mode !== 'cyber') return;
-      
-      const handleMouseMove = (e) => {
-        setPosition({ x: e.clientX, y: e.clientY });
-      };
-      
-      window.addEventListener('mousemove', handleMouseMove);
-      return () => window.removeEventListener('mousemove', handleMouseMove);
-    }, [mode]);
-
-    if (mode !== 'cyber') return null;
-
-    return (
-      <>
-        <div style={{
-          position: 'fixed',
-          left: position.x - 10,
-          top: position.y - 10,
-          width: 20,
-          height: 20,
-          border: `2px solid ${theme.accent}`,
-          borderRadius: '50%',
-          pointerEvents: 'none',
-          zIndex: 10000,
-          boxShadow: `0 0 10px ${theme.accent}, 0 0 20px ${theme.accent}40`,
-          transition: 'transform 0.1s ease'
-        }} />
-        <div style={{
-          position: 'fixed',
-          left: position.x - 3,
-          top: position.y - 3,
-          width: 6,
-          height: 6,
-          background: theme.accent,
-          borderRadius: '50%',
-          pointerEvents: 'none',
-          zIndex: 10001,
-          boxShadow: `0 0 5px ${theme.accent}`
-        }} />
-      </>
     );
   };
 
@@ -608,8 +559,9 @@ const Portfolio = () => {
       </div>
 
       <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
+        {/* Language Toggle - Using direct handler */}
         <button
-          onClick={() => setLang(lang === 'en' ? 'es' : 'en')}
+          onClick={handleLangToggle}
           style={{
             background: theme.bgTertiary,
             border: `1px solid ${theme.border}`,
@@ -619,14 +571,15 @@ const Portfolio = () => {
             cursor: 'pointer',
             fontSize: '12px',
             fontWeight: 'bold',
-            transition: 'all 0.3s ease'
+            transition: 'all 0.15s ease'
           }}
         >
           {lang === 'en' ? '🇪🇸 ES' : '🇺🇸 EN'}
         </button>
 
+        {/* Mode Toggle - Using direct handler */}
         <button
-          onClick={() => setMode(mode === 'pro' ? 'cyber' : 'pro')}
+          onClick={handleModeToggle}
           style={{
             background: mode === 'cyber' ? theme.gradient : theme.bgTertiary,
             border: `1px solid ${theme.border}`,
@@ -636,7 +589,7 @@ const Portfolio = () => {
             cursor: 'pointer',
             fontSize: '12px',
             fontWeight: 'bold',
-            transition: 'all 0.3s ease',
+            transition: 'all 0.15s ease',
             boxShadow: mode === 'cyber' ? `0 0 15px ${theme.accentGlow}` : 'none'
           }}
         >
@@ -654,7 +607,7 @@ const Portfolio = () => {
               borderRadius: '6px',
               cursor: 'pointer',
               fontSize: '14px',
-              transition: 'all 0.3s ease'
+              transition: 'all 0.15s ease'
             }}
           >
             {musicPlaying ? '🔊' : '🔇'}
@@ -728,8 +681,9 @@ const Portfolio = () => {
         }}>|</span>
       </div>
 
+      {/* Kratos Quote - Always in English */}
       <div
-        onClick={() => setQuoteIndex((quoteIndex + 1) % t.quotes.length)}
+        onClick={() => setQuoteIndex((quoteIndex + 1) % kratosQuotes.length)}
         style={{
           fontSize: '14px',
           color: theme.textMuted,
@@ -742,7 +696,7 @@ const Portfolio = () => {
           background: mode === 'cyber' ? `${theme.accent}10` : 'transparent'
         }}
       >
-        {t.quotes[quoteIndex]}
+        {kratosQuotes[quoteIndex]}
       </div>
 
       <a
@@ -1135,125 +1089,46 @@ const Portfolio = () => {
     </section>
   );
 
-  // Experience Section
-  const ExperienceSection = () => (
-    <section id="experience" style={{
+  // Certifications Section
+  const CertificationsSection = () => (
+    <section id="certifications" style={{
       padding: '100px 40px',
-      maxWidth: '800px',
+      maxWidth: '1000px',
       margin: '0 auto'
     }}>
       <h2 style={{
         fontSize: '36px',
         fontWeight: 'bold',
         color: theme.text,
-        marginBottom: '60px',
+        marginBottom: '40px',
         fontFamily: mode === 'cyber' ? "'Orbitron', monospace" : "'Space Grotesk', sans-serif",
         textShadow: mode === 'cyber' ? `0 0 10px ${theme.accent}` : 'none',
         textAlign: 'center'
       }}>
         {mode === 'cyber' && <span style={{ color: theme.accent }}>{'// '}</span>}
-        {t.experience.title}
+        {t.certifications.title}
       </h2>
 
-      <div style={{ position: 'relative' }}>
+      <div style={{
+        background: theme.bgSecondary,
+        padding: '40px',
+        borderRadius: '16px',
+        border: `1px solid ${theme.border}`,
+        textAlign: 'center'
+      }}>
         <div style={{
-          position: 'absolute',
-          left: '20px',
-          top: '10px',
-          bottom: '10px',
-          width: '2px',
-          background: mode === 'cyber' ? theme.gradient : theme.accent,
-          boxShadow: mode === 'cyber' ? `0 0 10px ${theme.accent}` : 'none'
-        }} />
-
-        {t.experience.items.map((item, i) => (
-          <div
-            key={i}
-            style={{
-              display: 'flex',
-              gap: '30px',
-              marginBottom: '40px'
-            }}
-          >
-            <div style={{
-              width: '42px',
-              height: '42px',
-              borderRadius: '50%',
-              background: theme.bgSecondary,
-              border: `3px solid ${theme.accent}`,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexShrink: 0,
-              boxShadow: mode === 'cyber' ? `0 0 15px ${theme.accent}` : 'none',
-              zIndex: 1
-            }}>
-              <span style={{ fontSize: '18px' }}>💼</span>
-            </div>
-
-            <div style={{
-              background: theme.bgSecondary,
-              padding: '30px',
-              borderRadius: '16px',
-              border: `1px solid ${theme.border}`,
-              flex: 1,
-              transition: 'all 0.3s ease'
-            }}
-            onMouseEnter={(e) => {
-              if (mode === 'cyber') {
-                e.currentTarget.style.borderColor = theme.accent;
-                e.currentTarget.style.boxShadow = `0 0 20px ${theme.accent}20`;
-              }
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = theme.border;
-              e.currentTarget.style.boxShadow = 'none';
-            }}
-            >
-              <div style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'flex-start',
-                marginBottom: '15px',
-                flexWrap: 'wrap',
-                gap: '10px'
-              }}>
-                <div>
-                  <h3 style={{
-                    fontSize: '20px',
-                    fontWeight: 'bold',
-                    color: theme.text,
-                    marginBottom: '5px',
-                    fontFamily: mode === 'cyber' ? "'Orbitron', monospace" : "'Space Grotesk', sans-serif"
-                  }}>
-                    {item.role}
-                  </h3>
-                  <div style={{ color: theme.accent, fontSize: '16px' }}>
-                    {item.company}
-                  </div>
-                </div>
-                <div style={{
-                  background: `${theme.accent}15`,
-                  color: theme.accent,
-                  padding: '6px 14px',
-                  borderRadius: '20px',
-                  fontSize: '13px',
-                  border: mode === 'cyber' ? `1px solid ${theme.accent}40` : 'none'
-                }}>
-                  {item.period}
-                </div>
-              </div>
-
-              <p style={{
-                color: theme.textSecondary,
-                fontSize: '15px',
-                lineHeight: '1.7'
-              }}>
-                {item.description}
-              </p>
-            </div>
-          </div>
-        ))}
+          fontSize: '48px',
+          marginBottom: '20px'
+        }}>
+          🎓
+        </div>
+        <p style={{
+          color: theme.textMuted,
+          fontSize: '16px',
+          fontStyle: 'italic'
+        }}>
+          {t.certifications.comingSoon}
+        </p>
       </div>
     </section>
   );
@@ -1372,6 +1247,44 @@ const Portfolio = () => {
     </section>
   );
 
+  // CV Section
+  const CVSection = () => (
+    <section id="cv" style={{
+      padding: '60px 40px',
+      textAlign: 'center'
+    }}>
+      <a
+        href="/CV_Esteban_Meza.pdf"
+        download
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '10px',
+          background: theme.bgSecondary,
+          border: `2px solid ${theme.accent}`,
+          color: theme.accent,
+          padding: '16px 40px',
+          borderRadius: '8px',
+          fontSize: '16px',
+          fontWeight: 'bold',
+          textDecoration: 'none',
+          transition: 'all 0.3s ease',
+          fontFamily: mode === 'cyber' ? "'Orbitron', monospace" : "'Space Grotesk', sans-serif"
+        }}
+        onMouseEnter={(e) => {
+          e.target.style.background = theme.accent;
+          e.target.style.color = '#000';
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.background = theme.bgSecondary;
+          e.target.style.color = theme.accent;
+        }}
+      >
+        📄 {t.cv.download}
+      </a>
+    </section>
+  );
+
   // Footer
   const Footer = () => (
     <footer style={{
@@ -1415,7 +1328,6 @@ const Portfolio = () => {
       background: theme.bg,
       color: theme.text,
       fontFamily: "'Inter', -apple-system, sans-serif",
-      cursor: mode === 'cyber' ? 'none' : 'default',
       overflowX: 'hidden'
     }}>
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -1480,7 +1392,6 @@ const Portfolio = () => {
       ) : (
         <>
           {mode === 'cyber' && <CyberRain />}
-          {mode === 'cyber' && <CustomCursor />}
           <EasterEggOverlay />
           <Navigation />
           <main>
@@ -1488,8 +1399,8 @@ const Portfolio = () => {
             <AboutSection />
             <SkillsSection />
             <ProjectsSection />
-            <ExperienceSection />
             <ContactSection />
+            <CVSection />
           </main>
           <Footer />
         </>
